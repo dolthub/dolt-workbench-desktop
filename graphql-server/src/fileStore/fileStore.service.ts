@@ -44,10 +44,8 @@ export class FileStoreService {
       if (!fs.existsSync(process.env.NEXT_PUBLIC_USER_DATA_PATH || "")) {
         fs.mkdirSync(process.env.NEXT_PUBLIC_USER_DATA_PATH || "");
       }
-    } else {
-      if (!fs.existsSync(resolve(__dirname, "../../store"))) {
-        fs.mkdirSync(resolve(__dirname, "../../store"));
-      }
+    } else if (!fs.existsSync(resolve(__dirname, "../../store"))) {
+      fs.mkdirSync(resolve(__dirname, "../../store"));
     }
 
     fs.writeFileSync(storePath, JSON.stringify(store), {
