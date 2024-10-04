@@ -39,6 +39,10 @@
       {
         "from": "build/mac/Assets.car",
         "to": "Resources/Assets.car"
+      },
+      {
+        "from": "build/mac/AppIcon.icns",
+        "to": "Resources/AppIcon.icns"
       }
     ],
     "mac": {
@@ -46,18 +50,12 @@
       "icon": "build/mac/AppIcon.icns",
       "extendInfo": {
         "CFBundleIconName": "AppIcon",
-        "CFBundleIconFile": "AppIcon.icns"
+        "CFBundleIconFile": "AppIcon"
       },
       "artifactName": "${productName}-mac-${arch}.${ext}",
-      "target": [
-        {
-          "target": "dmg",
-          "arch": [
-            "x64",
-            "arm64"
-          ]
-        }
-      ]
+      "target": "dmg",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
     }
   },
   "dependencies": {

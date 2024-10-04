@@ -2,7 +2,7 @@
   "private": true,
   "name": "dolt-workbench",
   "description": "SQL workbench for MySQL and PostgreSQL databases",
-  "version": "1.0.10",
+  "version": "1.0.0",
   "main": "app/background.js",
   "workspaces": {
     "packages": [
@@ -50,28 +50,21 @@
       "icon": "build/mac/AppIcon.icns",
       "extendInfo": {
         "CFBundleIconName": "AppIcon",
-        "CFBundleIconFile": "AppIcon"
+        "CFBundleIconFile": "AppIcon",
+        "CFBundleDisplayName": "Dolt Workbench"
       },
       "artifactName": "${productName}-mac-${arch}.${ext}",
       "target": [
         {
-          "target": "mas",
-          "arch": "universal"
+          "target": "dmg",
+          "arch": "x64"
         }
       ],
-      "notarize": {
-        "teamId": "FK9YU86WZ5"
-      },
-      "x64ArchFiles": "*",
-      "type": "distribution",
-      "hardenedRuntime": false,
+      "hardenedRuntime": true,
       "gatekeeperAssess": false,
-      "asarUnpack": [
-        "**/*.node"
-      ],
-      "provisioningProfile": "build/mac/MacAppStore.provisionprofile",
-      "entitlements": "build/mac/entitlements.mas.plist",
-      "entitlementsInherit": "build/mac/entitlements.mas.inherit.plist"
+      "provisioningProfile": "build/mac/AppleDevelopment.provisionprofile",
+      "entitlements": "build/mac/entitlements.plist",
+      "entitlementsInherit": "build/mac/entitlements.inherit.plist"
     }
   },
   "dependencies": {
