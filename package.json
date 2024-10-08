@@ -2,7 +2,7 @@
   "private": true,
   "name": "dolt-workbench",
   "description": "SQL workbench for MySQL and PostgreSQL databases",
-  "version": "1.0.0",
+  "version": "0.2.14",
   "main": "app/background.js",
   "workspaces": {
     "packages": [
@@ -10,7 +10,7 @@
       "web"
     ]
   },
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.5.0",
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
@@ -24,8 +24,8 @@
   },
   "build": {
     "appId": "com.dolthub.dolt-workbench",
-    "productName": "Dolt-Workbench",
-    "buildVersion": "1.0.0",
+    "productName": "Dolt Workbench",
+    "buildVersion": "0.2.13",
     "copyright": "Copyright © 2024 <DoltHub Inc>",
     "files": [
       "app",
@@ -50,21 +50,28 @@
       "icon": "build/mac/AppIcon.icns",
       "extendInfo": {
         "CFBundleIconName": "AppIcon",
-        "CFBundleIconFile": "AppIcon",
-        "CFBundleDisplayName": "Dolt Workbench"
+        "CFBundleIconFile": "AppIcon"
       },
       "artifactName": "${productName}-mac-${arch}.${ext}",
       "target": [
         {
-          "target": "dmg",
-          "arch": "x64"
+          "target": "mas",
+          "arch": "universal"
         }
       ],
-      "hardenedRuntime": true,
+      "notarize": {
+        "teamId": "FK9YU86WZ5"
+      },
+      "x64ArchFiles": "*",
+      "type": "distribution",
+      "hardenedRuntime": false,
       "gatekeeperAssess": false,
-      "provisioningProfile": "build/mac/AppleDevelopment.provisionprofile",
-      "entitlements": "build/mac/entitlements.plist",
-      "entitlementsInherit": "build/mac/entitlements.inherit.plist"
+      "asarUnpack": [
+        "**/*.node"
+      ],
+      "provisioningProfile": "build/mac/MacAppStore.provisionprofile",
+      "entitlements": "build/mac/entitlements.mas.plist",
+      "entitlementsInherit": "build/mac/entitlements.mas.inherit.plist"
     }
   },
   "dependencies": {

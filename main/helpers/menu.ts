@@ -74,14 +74,18 @@ export function initMenu(
     {
       label: "Tools",
       submenu: [
-        {
-          label: "Toggle Developer Tools",
-          accelerator:
-            process.platform === "darwin" ? "Alt+Command+I" : "Ctrl+Shift+I",
-          click(_item, focusedWindow) {
-            if (focusedWindow) focusedWindow.webContents.toggleDevTools();
-          },
-        },
+        isProd
+          ? { label: "hidden", visible: false }
+          : {
+              label: "Toggle Developer Tools",
+              accelerator:
+                process.platform === "darwin"
+                  ? "Alt+Command+I"
+                  : "Ctrl+Shift+I",
+              click(_item, focusedWindow) {
+                if (focusedWindow) focusedWindow.webContents.toggleDevTools();
+              },
+            },
         {
           type: "separator",
         },

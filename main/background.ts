@@ -123,10 +123,7 @@ app.on("before-quit", () => {
 });
 
 app.on("window-all-closed", () => {
-  // On macOS, closing all windows shouldn't exit the process
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
+  app.quit();
 });
 
 // This does not work
