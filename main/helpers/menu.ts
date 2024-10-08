@@ -86,9 +86,11 @@ export function initMenu(
                 if (focusedWindow) focusedWindow.webContents.toggleDevTools();
               },
             },
-        {
-          type: "separator",
-        },
+        isProd
+          ? { label: "hidden", visible: false }
+          : {
+              type: "separator",
+            },
         {
           label: "Import File",
           accelerator: "CmdOrCtrl+I",
