@@ -28,8 +28,8 @@ export default function useElectronMenu(params: DatabasePageParams) {
           break;
         }
         case "commit-graph": {
-          const { href, as } = commitGraph(paramsWithRef);
-          router.push(href, as).catch(console.error);
+          const {  as } = commitGraph(paramsWithRef);
+          window.ipc.invoke("open-new-tab",as);
           break;
         }
         case "schema-diagram": {
