@@ -72,7 +72,7 @@ async function isGraphQLServerReady(url: string): Promise<boolean> {
     console.log(url, response);
     return response.ok;
   } catch (error) {
-    console.error("GraphQL server is not ready:", error);
+    console.error("Error pinging GraphQL server:", error);
     return false;
   }
 }
@@ -83,12 +83,13 @@ async function waitForGraphQLServer(
 ): Promise<void> {
   const startTime = Date.now();
   while (Date.now() - startTime < timeout) {
-    if (await isGraphQLServerReady(url)) {
+    const isReady = await isGraphQLServerReady(url);
+    if (isReady) {
       return;
     }
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
-  throw new Error("GraphQL server did not become ready in time");
+  throw new Error("Timed out starting GraphQL server");
 }
 
 app.on("ready", async () => {
