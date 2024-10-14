@@ -40,17 +40,16 @@
       {
         "from": "build/appx/icon.ico",
         "to": "resources/icon.ico"
+      },
+      {
+        "from": "main/loading.html",
+        "to": "resources/loading.html"
       }
     ],
     "win": {
       "icon": "build/appx/icon.ico",
       "signAndEditExecutable": true,
-      "artifactName": "${productName}-win-${arch}.${ext}",
-      "target": [
-        "zip",
-        "msi",
-        "7z"
-      ]
+      "artifactName": "${productName}-win-${arch}.${ext}"
     },
     "npmRebuild": false
   },
@@ -63,13 +62,13 @@
     "@types/node": "^22.5.2",
     "@types/react": "^18.3.5",
     "autoprefixer": "^10.4.19",
-    "copy-webpack-plugin": "^12.0.2",
     "electron": "^31.0.1",
     "electron-builder": "^25.1.7",
     "next": "^14.2.4",
     "nextron": "^9.1.0",
     "npm-run-all": "4.1.5",
     "postcss": "^8.4.40",
+    "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rimraf": "^6.0.1",

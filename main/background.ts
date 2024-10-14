@@ -96,18 +96,18 @@ function createLoadingWindow() {
   mainWindow = createWindow("main", {
     width: 1280,
     height: 680,
-    icon:process.platform === "darwin"?"build/mac/AppIcon.icns":path.join(
-      process.resourcesPath,
-     "icon.ico",
-    ),
+    icon:
+      process.platform === "darwin"
+        ? "build/mac/AppIcon.icns"
+        : path.join(process.resourcesPath, "icon.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
   });
-  if(isProd){
-    mainWindow.loadURL("app://./loading")
-  }else{
-    mainWindow.loadFile(path.join(__dirname,`./loading.html`));
+  if (isProd) {
+    mainWindow.loadURL(path.join(process.resourcesPath, "./loading.html"));
+  } else {
+    mainWindow.loadFile(path.join(__dirname, "../main/loading.html"));
   }
 }
 
@@ -117,7 +117,7 @@ app.on("ready", async () => {
   createGraphqlSeverProcess();
 
   Menu.setApplicationMenu(initMenu(mainWindow, isProd));
- 
+
   await waitForGraphQLServer("http://localhost:9002/graphql");
 
   if (isProd) {
