@@ -79,7 +79,7 @@ async function isGraphQLServerReady(url: string): Promise<boolean> {
 
 async function waitForGraphQLServer(
   url: string,
-  timeout: number = 30000,
+  timeout: number = 50000,
 ): Promise<void> {
   const startTime = Date.now();
   while (Date.now() - startTime < timeout) {
@@ -91,16 +91,33 @@ async function waitForGraphQLServer(
   throw new Error("GraphQL server did not become ready in time");
 }
 
-app.on("ready", async () => {
+// Function to create the loading window
+function createLoadingWindow() {
   mainWindow = createWindow("main", {
     width: 1280,
     height: 680,
+    icon:process.platform === "darwin"?"build/mac/AppIcon.icns":path.join(
+      process.resourcesPath,
+     "icon.ico",
+    ),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
   });
-  Menu.setApplicationMenu(initMenu(mainWindow, isProd));
+  if(isProd){
+    mainWindow.loadURL("app://./loading")
+  }else{
+    mainWindow.loadFile(path.join(__dirname,`./loading.html`));
+  }
+}
+
+app.on("ready", async () => {
+  createLoadingWindow();
+
   createGraphqlSeverProcess();
+
+  Menu.setApplicationMenu(initMenu(mainWindow, isProd));
+ 
   await waitForGraphQLServer("http://localhost:9002/graphql");
 
   if (isProd) {

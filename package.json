@@ -2,7 +2,7 @@
   "private": true,
   "name": "dolt-workbench",
   "description": "SQL workbench for MySQL and PostgreSQL databases",
-  "version": "0.2.14",
+  "version": "0.2.13",
   "main": "app/background.js",
   "workspaces": {
     "packages": [
@@ -27,6 +27,7 @@
     "productName": "Dolt Workbench",
     "buildVersion": "0.2.13",
     "copyright": "Copyright © 2024 <DoltHub Inc>",
+    "icon": "build/appx/icon.ico",
     "files": [
       "app",
       "package.json"
@@ -37,42 +38,21 @@
       "graphql-server/node_modules",
       "!**/node_modules/@nestjs/cli/node_modules/fsevents/**",
       {
-        "from": "build/mac/Assets.car",
-        "to": "Resources/Assets.car"
-      },
-      {
-        "from": "build/mac/AppIcon.icns",
-        "to": "Resources/AppIcon.icns"
+        "from": "build/appx/icon.ico",
+        "to": "resources/icon.ico"
       }
     ],
-    "mac": {
-      "category": "public.app-category.developer-tools",
-      "icon": "build/mac/AppIcon.icns",
-      "extendInfo": {
-        "CFBundleIconName": "AppIcon",
-        "CFBundleIconFile": "AppIcon"
-      },
-      "artifactName": "${productName}-mac-${arch}.${ext}",
+    "win": {
+      "icon": "build/appx/icon.ico",
+      "signAndEditExecutable": true,
+      "artifactName": "${productName}-win-${arch}.${ext}",
       "target": [
-        {
-          "target": "mas",
-          "arch": "universal"
-        }
-      ],
-      "notarize": {
-        "teamId": "FK9YU86WZ5"
-      },
-      "x64ArchFiles": "*",
-      "type": "distribution",
-      "hardenedRuntime": false,
-      "gatekeeperAssess": false,
-      "asarUnpack": [
-        "**/*.node"
-      ],
-      "provisioningProfile": "build/mac/MacAppStore.provisionprofile",
-      "entitlements": "build/mac/entitlements.mas.plist",
-      "entitlementsInherit": "build/mac/entitlements.mas.inherit.plist"
-    }
+        "zip",
+        "msi",
+        "7z"
+      ]
+    },
+    "npmRebuild": false
   },
   "dependencies": {
     "electron-serve": "^1.3.0",
@@ -83,8 +63,9 @@
     "@types/node": "^22.5.2",
     "@types/react": "^18.3.5",
     "autoprefixer": "^10.4.19",
+    "copy-webpack-plugin": "^12.0.2",
     "electron": "^31.0.1",
-    "electron-builder": "^24.13.3",
+    "electron-builder": "^25.1.7",
     "next": "^14.2.4",
     "nextron": "^9.1.0",
     "npm-run-all": "4.1.5",
