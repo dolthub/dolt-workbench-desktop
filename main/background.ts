@@ -68,7 +68,6 @@ async function isGraphQLServerReady(url: string): Promise<boolean> {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query: "{ __typename }" }),
     });
-    console.log(url, response);
     return response.ok;
   } catch (error) {
     console.error("Error pinging GraphQL server:", error);
