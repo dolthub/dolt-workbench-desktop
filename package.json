@@ -52,18 +52,36 @@
         "CFBundleIconName": "AppIcon",
         "CFBundleIconFile": "AppIcon"
       },
-      "artifactName": "${productName}-mac-${arch}.${ext}",
       "target": [
         {
           "target": "mas",
           "arch": "universal"
+        },
+        {
+          "target": "dmg"
         }
       ],
+      "artifactName": "${productName}-mac-${arch}.${ext}",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "provisioningProfile": "build/mac/AppleDevelopment.provisionprofile",
+      "entitlements": "build/mac/entitlements.plist",
+      "entitlementsInherit": "build/mac/entitlements.inherit.plist"
+    },
+    "mas": {
+      "category": "public.app-category.developer-tools",
+      "icon": "build/mac/AppIcon.icns",
+      "extendInfo": {
+        "CFBundleIconName": "AppIcon",
+        "CFBundleIconFile": "AppIcon",
+        "CFBundleDisplayName": "Dolt Workbench"
+      },
+      "artifactName": "${productName}-mac-${arch}.${ext}",
+      "type": "distribution",
       "notarize": {
         "teamId": "FK9YU86WZ5"
       },
       "x64ArchFiles": "*",
-      "type": "distribution",
       "hardenedRuntime": false,
       "gatekeeperAssess": false,
       "asarUnpack": [
