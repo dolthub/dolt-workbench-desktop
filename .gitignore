@@ -15,3 +15,5 @@ dist
 .yarn/*
 
 .env
+
+/build/mac/*.provisionprofile

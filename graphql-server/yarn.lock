@@ -749,9 +749,10 @@ __metadata:
     cors: "npm:^2.8.5"
     eslint: "npm:^8.52.0"
     eslint-config-airbnb: "npm:^19.0.4"
+    eslint-config-airbnb-base: "npm:^15.0.0"
     eslint-config-airbnb-typescript: "npm:^18.0.0"
     eslint-config-prettier: "npm:^9.0.0"
-    eslint-plugin-import: "npm:^2.30.0"
+    eslint-plugin-import: "npm:^2.31.0"
     eslint-plugin-jest: "npm:^28.8.3"
     graphql: "npm:^16.9.0"
     graphql-upload: "npm:15.0.0"
@@ -4220,7 +4221,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:^2.30.0":
+"eslint-plugin-import@npm:^2.31.0":
   version: 2.31.0
   resolution: "eslint-plugin-import@npm:2.31.0"
   dependencies:

@@ -19,6 +19,7 @@ const schemaPath = isProd
   : "graphql-server/schema.gql";
 process.env.SCHEMA_PATH = schemaPath;
 process.env.NEXT_PUBLIC_FOR_ELECTRON = "true";
+process.env.NEXT_PUBLIC_USER_DATA_PATH = userDataPath;
 
 if (isProd) {
   serve({ directory: "app" });
@@ -148,10 +149,7 @@ app.on("before-quit", () => {
 });
 
 app.on("window-all-closed", () => {
-  // On macOS, closing all windows shouldn't exit the process
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
+  app.quit();
 });
 
 // This does not work
