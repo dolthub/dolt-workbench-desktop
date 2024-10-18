@@ -1,6 +1,7 @@
 import path from "path";
 import {
   app,
+  BrowserView,
   BrowserWindow,
   ipcMain,
   Menu,
@@ -167,3 +168,17 @@ ipcMain.handle("api-config", async () => {
   };
   return cfg;
 });
+
+ipcMain.handle("open-new-tab", async (event, arg) => {
+  const view=new BrowserWindow({
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+    },
+  });
+  mainWindow.addTabbedWindow(view);
+
+  const port = process.argv[2];
+  const url=isProd?`app://./${arg}`:`http://localhost:${port}${arg}`;
+  console.log(url);
+  view.loadURL(url);
+})
