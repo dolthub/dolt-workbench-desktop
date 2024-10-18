@@ -1,6 +1,13 @@
 Release and update for Mac:
 
-1. Fetching the changes from [workbench repo](https://github.com/dolthub/dolt-workbench), merge the changes into your local [desktop repo](https://github.com/dolthub/dolt-workbench-desktop)
+### Prerequisite
+
+- You need a developer account and contact tim for access.
+- Download the provision profiles and install the certificates from Apple connect, instructions in this blog: https://www.dolthub.com/blog/2024-10-02-how-to-submit-an-electron-app-to-mac-app-store/#generate-provisioning-profiles
+
+### Build the package
+
+1. Fetch the changes from [workbench repo](https://github.com/dolthub/dolt-workbench), merge the changes into your local [desktop repo](https://github.com/dolthub/dolt-workbench-desktop)
 
 2. Install dependencies and build in the `graphql-server` directory:
 
